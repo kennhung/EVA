@@ -197,7 +197,8 @@ SEALSecret
     WARNING: This object holds your generated secret key. Do not share this object
               (or its serialized form) with anyone you do not want having access
               to the values encrypted with the public context.)DELIMITER", py::arg("absract_params"));
-  py::class_<SEALValuation>(mseal, "SEALValuation", "A valuation for inputs or outputs holding values encrypted with SEAL");
+  py::class_<SEALValuation>(mseal, "SEALValuation", "A valuation for inputs or outputs holding values encrypted with SEAL")
+    .def("merge", &SEALValuation::merge, "Merge two SEALValuation");
   py::class_<SEALPublic>(mseal, "SEALPublic", "The public part of the SEAL context that is used for encryption and execution.")
     .def("encrypt", &SEALPublic::encrypt, R"DELIMITER(Encrypt inputs for a compiled EVA program
 
